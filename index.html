@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>특별관 장르 적합도</title>
-<meta name="description" content="한국 KOBIS 데이터로 찾은 특별관(4D·ScreenX) 적합 장르를 해외 박스오피스 트렌드에 대입한 분석 대시보드 · 김지민 CJ 4DPLEX 사전과제">
+<meta name="description" content="한국 KOBIS 좌석점유율로 찾은 특별관(4D·ScreenX) 적합 작품 특징을 해외 박스오피스 트렌드에 대입한 분석 대시보드 · 김지민 CJ 4DPLEX 사전과제">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
 <style>
 :root{
@@ -227,6 +227,7 @@ body{background:var(--color-bg);color:var(--color-fg);font-family:var(--font-ant
 .ts table.dt td .hi.d4_ratio{color:var(--c4d)}
 .ts table.dt td .hi.sx_ratio{color:var(--csx)}
 .ts #m-flow{gap:16px}
+.ts .prio{display:inline-block;margin:16px 0 0;padding:9px 16px;border-radius:999px;background:color-mix(in srgb,var(--csx) 12%,var(--color-panel));color:var(--color-fg);font-size:15px;font-weight:700}
 .ts [data-dash-source-state=empty]{color:transparent}
 .ts [data-dash-source-state=refreshing]{opacity:.5;transition:opacity var(--cds-dur-slow)}
 @media (prefers-reduced-motion:no-preference){
@@ -265,38 +266,38 @@ body{background:var(--color-bg);color:var(--color-fg);font-family:var(--font-ant
       <header class="hero">
         <p class="eyebrow">한눈에 보기</p>
         <h1>특별관은 어떤 영화에서 빛날까요</h1>
-        <p class="lead">한국 극장 데이터로 특별관에 맞는 장르를 찾고, 그 장르가 커지는 해외 시장을 골랐어요.</p>
+        <p class="lead">한국 극장의 좌석점유율로 특별관에 맞는 작품의 특징을 찾고, 그 특징이 큰 해외 시장을 골랐어요.</p>
         <div class="chips" data-draw="hero-chips" data-source="recs"></div>
       </header>
 
       <div class="sec split" id="problem">
         <div class="copy rv">
           <p class="eyebrow">문제</p>
-          <h2>흥행작이라고 특별관에서도 잘 되진 않아요</h2>
+          <h2>흥행 규모만으로는 특별관 성과를 설명하기 어려워요</h2>
           <details class="more-d">
             <summary>자세히 보기</summary>
             <div class="more-body">
-              <p>같은 영화라도 특별관 좌석이 일반관보다 덜 찬 경우가 절반 가까이 됐어요. 경쟁 포맷인 IMAX는 거의 언제나 일반관보다 잘 찼어요.</p>
-              <p>일반관 대비 배수 = 특별관 회차당 관객 ÷ 같은 영화 일반관 회차당 관객.</p>
+              <p>좌석점유율(관객 ÷ 배정 좌석)로 비교했어요. 4D는 일반관보다 잘 찬 영화가 더 많았지만, ScreenX와 IMAX는 일반관보다 덜 찬 영화가 더 많았어요. 흥행 규모와의 관계는 약했어요. 큰 영화가 조금 나은 정도예요(검정 결과는 방법론에).</p>
+              <p>점유율 배수 = 특별관 좌석점유율 ÷ 같은 영화 일반관 좌석점유율. 영화별 전체 배정 좌석은 KOBIS 일자별 통계, 포맷별 좌석은 KOBIS 영화상영관 정보의 상영관 좌석 수 평균으로 추정했어요.</p>
             </div>
           </details>
         </div>
         <div class="visual rv d2">
           <div class="stats">
             <div class="stat c4d">
-              <span class="lab">4D 배수 중앙값</span>
+              <span class="lab">4D · 점유율 배수 중앙값</span>
               <span class="big" data-draw="v" data-fmt="ratio" data-source="kr_format" data-field="median_ratio" data-where="format=4D">—</span>
-              <span class="sub">일반관보다 잘 된 영화 <b data-draw="v" data-fmt="pct" data-source="kr_format" data-field="share_above_1" data-where="format=4D">—</b></span>
+              <span class="sub">일반관보다 잘 찬 영화 <b data-draw="v" data-fmt="pct" data-source="kr_format" data-field="share_above_1" data-where="format=4D">—</b></span>
             </div>
             <div class="stat csx">
-              <span class="lab">ScreenX 배수 중앙값</span>
+              <span class="lab">ScreenX · 점유율 배수 중앙값</span>
               <span class="big" data-draw="v" data-fmt="ratio" data-source="kr_format" data-field="median_ratio" data-where="format=ScreenX">—</span>
-              <span class="sub">일반관보다 잘 된 영화 <b data-draw="v" data-fmt="pct" data-source="kr_format" data-field="share_above_1" data-where="format=ScreenX">—</b></span>
+              <span class="sub">일반관보다 잘 찬 영화 <b data-draw="v" data-fmt="pct" data-source="kr_format" data-field="share_above_1" data-where="format=ScreenX">—</b></span>
             </div>
             <div class="stat dim">
               <span class="lab">비교 · IMAX</span>
               <span class="big" data-draw="v" data-fmt="ratio" data-source="kr_format" data-field="median_ratio" data-where="format=IMAX">—</span>
-              <span class="sub">일반관보다 잘 된 영화 <b data-draw="v" data-fmt="pct" data-source="kr_format" data-field="share_above_1" data-where="format=IMAX">—</b></span>
+              <span class="sub">일반관보다 잘 찬 영화 <b data-draw="v" data-fmt="pct" data-source="kr_format" data-field="share_above_1" data-where="format=IMAX">—</b></span>
             </div>
           </div>
         </div>
@@ -304,13 +305,13 @@ body{background:var(--color-bg);color:var(--color-fg);font-family:var(--font-ant
 
       <div class="sec split rev" id="korea">
         <div class="copy rv">
-          <p class="eyebrow">한국 데이터로 확인</p>
-          <h2>4D는 애니와 SF·재난, ScreenX는 공포에서 강했어요</h2>
+          <p class="eyebrow">4D</p>
+          <h2>4D는 장르에 따라 확실히 갈렸어요</h2>
           <details class="more-d">
             <summary>자세히 보기</summary>
             <div class="more-body">
-              <p>장르별 배수 중앙값이에요. 진한 막대가 적합 기준(<span data-draw="k" data-k="fit">—</span>배)을 넘은 장르예요. 점선은 일반관과 같은 선이에요.</p>
-              <p>할리우드 공포는 표본이 작아 파일럿 근거로 봐야 해요.</p>
+              <p>일본 애니와 할리우드 액션이 4D에서 높았고, 한국 영화는 같은 액션끼리 비교해도 낮았어요. ScreenX는 어떤 장르도 적합 기준(<span data-draw="k" data-k="fit">—</span>배)을 넘지 못했어요.</p>
+              <p>장르별 점유율 배수 중앙값이에요. 진한 막대가 적합 기준을 넘은 장르예요. 팬덤의 초반 집중 관람이나 편성 차이까지 분리한 결과는 아니라서, 장르는 작품을 고를 때 참고할 중요한 변수로 봐요.</p>
             </div>
           </details>
         </div>
@@ -323,15 +324,32 @@ body{background:var(--color-bg);color:var(--color-fg);font-family:var(--font-ant
         </div>
       </div>
 
-      <div class="sec" id="trend">
+      <div class="sec split" id="sx">
         <div class="copy rv">
-          <p class="eyebrow">글로벌 트렌드</p>
-          <h2>해외에서는 공포가 해마다 커지고 있어요</h2>
+          <p class="eyebrow">ScreenX</p>
+          <h2>ScreenX는 장르보다 작품 규모가 갈랐어요</h2>
           <details class="more-d">
             <summary>자세히 보기</summary>
             <div class="more-body">
-              <p>전 세계 흥행 상위 50편을 장르 10개로 나눠 보면, 해마다 빠짐없이 커진 장르는 공포 하나예요. 일본 애니는 큰 작품이 나온 해에만 올라가요.</p>
-              <p>큰 숫자는 2026년 비중이고, 모든 칸은 같은 눈금이에요. Box Office Mojo Worldwide, 2026년(*)은 11월 초까지 집계했어요.</p>
+              <p>ScreenX 점유율이 일반관보다 높았던 작품은 귀멸의 칼날, 마이클, 에이리언, 스파이더맨처럼 개봉 자체가 이벤트인 대작과 팬덤 작품이었어요. 장르 간 차이는 통계적으로 확인되지 않았어요.</p>
+              <p>ScreenX를 기준 회차 이상 상영한 영화 중 점유율 배수 상위 작품이에요. 점선은 일반관과 같은 선이에요.</p>
+            </div>
+          </details>
+        </div>
+        <div class="visual rv d2">
+          <div class="chart" id="chart-sx" data-draw="sx-top" data-source="kr_films"></div>
+        </div>
+      </div>
+
+      <div class="sec" id="trend">
+        <div class="copy rv">
+          <p class="eyebrow">글로벌 트렌드</p>
+          <h2>글로벌 상위권에서 공포는 커지고, 애니는 대작이 나올 때 커져요</h2>
+          <details class="more-d">
+            <summary>자세히 보기</summary>
+            <div class="more-body">
+              <p>전 세계 흥행 상위 50편을 장르 10개로 나눠 보면, 해마다 빠짐없이 커진 장르는 공포 하나예요. 상위 50편 안의 공포 매출은 2024년 <b data-draw="v" data-fmt="musd" data-source="horror_gross" data-field="gross_musd" data-where="year=2024">—</b>에서 2026년 <b data-draw="v" data-fmt="musd" data-source="horror_gross" data-field="gross_musd" data-where="year=2026">—</b>(11월 초까지)로 늘었고, 같은 기간 상위 50편 전체 매출은 <b data-draw="v" data-fmt="musd" data-source="horror_gross" data-field="top50_total_musd" data-where="year=2024">—</b>, <b data-draw="v" data-fmt="musd" data-source="horror_gross" data-field="top50_total_musd" data-where="year=2026">—</b>로 비슷했어요.</p>
+              <p>다만 한국 점유율로 보면 공포는 특별관과 잘 맞는다는 근거가 약해요. 에이리언 같은 크리처 대작만 4D와 ScreenX 모두 잘 찼어요. 일본 애니는 큰 작품이 나온 해에만 올라가요. 전체 박스오피스가 아니라 흥행 상위 50편 안에서의 변화예요.</p>
             </div>
           </details>
         </div>
@@ -347,13 +365,13 @@ body{background:var(--color-bg);color:var(--color-fg);font-family:var(--font-ant
       <div class="sec" id="apply">
         <div class="copy rv">
           <p class="eyebrow">해외 시장에 대입</p>
-          <h2>시장마다 밀어야 할 조합이 달라요</h2>
+          <h2>4D에 맞는 장르가 큰 시장을 골랐어요</h2>
           <span class="yr-now">기준 <span data-draw="yr">—</span> · <span data-draw="yr-prev">—</span></span>
           <details class="more-d">
             <summary>자세히 보기</summary>
             <div class="more-body">
               <p>한국에서 적합으로 나온 장르가 각 시장 흥행 상위 20편 매출에서 차지하는 비중이에요. 테두리 칸은 적합 장르이면서 비중이 <span data-draw="k" data-k="share">—</span> 이상인 조합이에요. ▲▼는 전년 대비 <span data-draw="k" data-k="delta">—</span> 이상 변화예요.</p>
-              <p>시장은 CJ 4DPLEX 특별관 지점이 많은 순서예요. 인도·인도네시아는 집계 기준이 달라 참고용이에요. 연도는 왼쪽 메뉴에서 바꿀 수 있어요.</p>
+              <p>한국을 뺀 해외 12개 시장(한국 포함 13개 시장 분석)으로, CJ 4DPLEX 특별관 지점이 많은 순서예요. 인도·인도네시아는 집계 기준이 달라 참고용이에요. 적합 기준 <span data-draw="k" data-k="fit">—</span>배는 통계로 정한 값이 아니라, 일반관(1배)보다 확실히 높은 선으로 정한 판단 기준이에요.</p>
             </div>
           </details>
         </div>
@@ -372,6 +390,7 @@ body{background:var(--color-bg);color:var(--color-fg);font-family:var(--font-ant
         <div class="copy rv">
           <p class="eyebrow">전략</p>
           <h2>한국에서 할 일, 해외에서 할 일</h2>
+          <p class="prio">우선순위 = 흥행 잠재력 × 포맷 적합도 × 공급 가능성</p>
           <details class="more-d">
             <summary>자세히 보기</summary>
             <div class="more-body">
@@ -385,83 +404,66 @@ body{background:var(--color-bg);color:var(--color-fg);font-family:var(--font-ant
           <div class="kgrid">
             <div class="kc k4d">
               <span class="verb">늘리기</span>
-              <h4>액션 팬덤 애니·SF·재난 액션에 4D를 넉넉히</h4>
+              <h4>팬덤 애니·할리우드 액션에 4D를 넉넉히</h4>
               <div class="kv-row">
                 <span class="kv"><small>일본 애니 4D</small><b data-draw="v" data-fmt="ratio" data-source="kr_buckets" data-field="ratio_4d" data-where="bucket=일본 애니">—</b></span>
-                <span class="kv"><small>SF·재난 4D</small><b data-draw="v" data-fmt="ratio" data-source="kr_buckets" data-field="ratio_4d" data-where="bucket=액션·어드벤처(SF·재난)">—</b></span>
+                <span class="kv"><small>할리우드 액션 4D</small><b data-draw="v" data-fmt="ratio" data-source="kr_buckets" data-field="ratio_4d" data-where="bucket=액션·어드벤처(SF·재난)">—</b></span>
               </div>
             </div>
             <div class="kc kmu">
-              <span class="verb">줄이기</span>
-              <h4>한국 대작·추리·가족 애니는 4D를 덜</h4>
+              <span class="verb">재검토</span>
+              <h4>점유율이 낮은 작품은 특별관 편성 재검토</h4>
               <div class="kv-row">
                 <span class="kv"><small>한국 영화 4D</small><b data-draw="v" data-fmt="ratio" data-source="kr_buckets" data-field="ratio_4d" data-where="bucket=현지(로컬) 영화">—</b></span>
               </div>
             </div>
             <div class="kc ksx">
-              <span class="verb">놓치지 않기</span>
-              <h4>흥행 신호가 큰 크리처·공간형 공포는 ScreenX로</h4>
+              <span class="verb">골라 걸기</span>
+              <h4>ScreenX는 이벤트급 대작에만</h4>
               <div class="kv-row">
-                <span class="kv"><small>할리우드 공포 ScreenX</small><b data-draw="v" data-fmt="ratio" data-source="kr_buckets" data-field="ratio_screenx" data-where="bucket=할리우드 공포">—</b></span>
+                <span class="kv"><small>ScreenX가 일반관보다 잘 찬 영화</small><b data-draw="v" data-fmt="pct" data-source="kr_format" data-field="share_above_1" data-where="format=ScreenX">—</b></span>
               </div>
             </div>
           </div>
           <details class="more-d">
             <summary>자세히 보기</summary>
             <div class="more-body">
-              <p><b>늘리기</b> 주술회전·귀멸의 칼날·체인소 맨처럼 액션 작화가 강한 팬덤 애니가 특히 높았어요.</p>
-              <p><b>줄이기</b> 천만 영화도 4D에서는 일반관보다 덜 찼고, 코난 같은 추리·가족 애니도 일반관을 밑돌았어요. 이 회차를 늘리기 쪽 작품에 돌려요.</p>
-              <p><b>놓치지 않기</b> 특별관은 개봉 전에 정해져요. 해외 개봉 성적과 프랜차이즈 여부로 미리 고르는 기준이 있으면 백룸·옵세션 같은 작품을 놓치지 않아요.</p>
+              <p><b>늘리기</b> 주술회전·체인소 맨·귀멸의 칼날 같은 액션 팬덤 애니와 F1·트위스터스 같은 속도·재난 대작이 4D에서 특히 잘 찼어요.</p>
+              <p><b>재검토</b> 한국 영화는 같은 액션 장르끼리 비교해도 4D·ScreenX 모두 일반관보다 덜 찼어요(검정 결과는 방법론에). 이런 작품의 특별관 회차를 늘리기 쪽 작품에 돌려요.</p>
+              <p><b>골라 걸기</b> ScreenX는 일반관보다 잘 찬 영화가 절반이 안 돼요. 개봉 자체가 이벤트인 대작과 팬덤 작품에 집중해요.</p>
             </div>
           </details>
-
-          <div class="subblock" id="horror-check">
-            <h4 class="q">원래 인기가 없어서 ScreenX를 안 건 걸까요?</h4>
-            <div class="legend">
-              <span><i class="sw" data-c="1"></i>ScreenX로 상영</span>
-              <span><i class="sw" data-c="m"></i>ScreenX 없이 개봉</span>
-              <span><i class="sw box"></i>놓친 작품</span>
-            </div>
-            <div class="visual"><div class="chart" id="chart-horror" data-draw="horror-bars" data-source="horror_kr"></div></div>
-            <details class="more-d">
-              <summary>자세히 보기</summary>
-              <div class="more-body">
-                <p>대부분은 맞아요. ScreenX 없이 개봉한 공포는 국내 관객이 적은 편이었어요. 하지만 백룸과 옵세션은 ScreenX로 상영한 작품 대부분보다 관객이 많았어요. 놓친 건 이 두 편이에요. 점선은 ScreenX로 상영한 공포의 관객 중앙값이에요.</p>
-                <p>2024~2026 전 세계 흥행 상위 50편(Box Office Mojo) 중 한국에 개봉한 공포. 관객 수와 ScreenX 상영 여부는 KOBIS 상영타입별 누적통계(2026-11-07 조회).</p>
-              </div>
-            </details>
-          </div>
         </div>
 
         <div class="rv stw" id="plan-global">
           <div class="st-head"><h3>글로벌 전략</h3><span class="tag tsx">한국 결과를 해외에 대입한 가설</span></div>
-          <p class="st-sub">기준 <span data-draw="yr">—</span>에 추천 기준을 넘은 새 조합</p>
+          <p class="st-sub">기준 <span data-draw="yr">—</span>에 추천 기준을 넘은 시장 조합</p>
           <div class="ccs" data-draw="rec-new" data-source="recs"></div>
           <div class="kgrid" style="margin-top:16px">
-            <div class="kc ksx">
-              <span class="verb">라인업으로</span>
-              <h4>공포를 한 편씩이 아니라 연간 라인업으로</h4>
-            </div>
             <div class="kc k4d">
               <span class="verb">앞당기기</span>
-              <h4>큰 애니 IP는 개봉일부터 특별관</h4>
+              <h4>큰 애니 IP는 일본·대만에서 개봉일부터 4DX</h4>
+            </div>
+            <div class="kc ksx">
+              <span class="verb">텐트폴 협업</span>
+              <h4>ScreenX는 이벤트급 프랜차이즈와 제작 단계부터</h4>
+            </div>
+            <div class="kc kmu">
+              <span class="verb">선별</span>
+              <h4>공포는 크리처 대작만</h4>
             </div>
             <div class="kc kmu">
               <span class="verb">데이터부터</span>
               <h4>중국·인도·인도네시아는 현지 데이터 확보가 먼저</h4>
             </div>
           </div>
-          <div class="subblock" style="margin-top:20px">
-            <h4 class="q">지금처럼 이어갈 것</h4>
-            <ul class="keep-list" data-draw="rec-keep" data-source="recs"></ul>
-          </div>
           <details class="more-d">
             <summary>자세히 보기</summary>
             <div class="more-body">
-              <p><b>라인업으로</b> 북미에서는 파이널 데스티네이션 블러드라인이 4DX 개봉 주말 기록을 세웠어요(CJ 4DPLEX 발표). 크리처·오컬트·공간형 공포를 연간 단위로 확보하고, 공포 비중이 커진 멕시코·스페인·영국·호주로 넓혀요.</p>
               <p><b>앞당기기</b> 일본·대만은 애니 비중이 커요. 귀멸의 칼날 무한성편은 일본 개봉 몇 달 뒤인 2026년 2월에야 ScreenX·ULTRA 4DX 상영을 시작했어요. 팬덤이 몰리는 개봉 첫 주에 맞춰요.</p>
+              <p><b>텐트폴 협업</b> 한국에서 ScreenX가 잘 찬 작품은 스파이더맨처럼 개봉 자체가 이벤트인 대작이었어요. 스파이더맨 브랜드 뉴 데이의 Shot for SCREENX 같은 제작 단계 협업을 이런 프랜차이즈로 넓혀요.</p>
+              <p><b>선별</b> 공포는 글로벌 상위권에서 커지고 북미에서는 파이널 데스티네이션이 4DX 개봉 주말 기록을 세웠지만(CJ 4DPLEX 발표), 한국 점유율로는 에이리언 같은 크리처 대작만 잘 찼어요. 공포 전체가 아니라 대작만 골라요.</p>
               <p><b>데이터부터</b> 현지 영화가 흥행의 대부분이라 한국 결과를 옮기기 어려워요. 특별관 지점이 가장 많은 중국은 현지 상영 데이터를 확보하는 게 첫 과제예요.</p>
-              <p><b>지금처럼 이어갈 것</b> SF·재난 액션은 서구 시장 전반에서 비중이 크고 4D와 잘 맞아요. 이미 특별관의 주력이라 그대로 유지·강화해요.</p>
             </div>
           </details>
         </div>
@@ -470,25 +472,30 @@ body{background:var(--color-bg);color:var(--color-fg);font-family:var(--font-ant
       <div class="sec split rev" id="kpi">
         <div class="copy rv">
           <p class="eyebrow">성공 기준</p>
-          <h2>파일럿은 이 선을 넘으면 성공이에요</h2>
+          <h2>파일럿은 이렇게 확인해요</h2>
           <details class="more-d">
             <summary>자세히 보기</summary>
             <div class="more-body">
-              <p>한국에서 상위 25%에 든 작품들의 배수를 목표로 잡았어요. 해외에서도 같은 궁합이 통하는지 이 숫자로 확인해요.</p>
+              <p>1차는 일반관보다 좌석점유율이 높은지(1배 이상) 봐요. 도전 목표는 한국 상위 25% 선이고, 손익 기준은 아니에요. 2차는 실제 배정 상영관 좌석과 개봉 주차를 맞춘 뒤 다시 비교하고, 사업성은 내부 매출·비용 자료로 확인해요.</p>
             </div>
           </details>
         </div>
         <div class="visual rv d2">
           <div class="stats">
-            <div class="stat csx">
-              <span class="lab">ScreenX 목표</span>
-              <span class="big" data-draw="v" data-fmt="ratio" data-source="kr_format" data-field="a_grade_cut" data-where="format=ScreenX">—</span>
-              <span class="sub">지금 중앙값 <b data-draw="v" data-fmt="ratio" data-source="kr_format" data-field="median_ratio" data-where="format=ScreenX">—</b></span>
+            <div class="stat">
+              <span class="lab">1차 기준</span>
+              <span class="big"><span data-draw="k" data-k="one">—</span>배 이상</span>
+              <span class="sub">일반관보다 잘 찼는가</span>
             </div>
             <div class="stat c4d">
-              <span class="lab">4D 목표</span>
+              <span class="lab">4D 도전 목표</span>
               <span class="big" data-draw="v" data-fmt="ratio" data-source="kr_format" data-field="a_grade_cut" data-where="format=4D">—</span>
               <span class="sub">지금 중앙값 <b data-draw="v" data-fmt="ratio" data-source="kr_format" data-field="median_ratio" data-where="format=4D">—</b></span>
+            </div>
+            <div class="stat csx">
+              <span class="lab">ScreenX 도전 목표</span>
+              <span class="big" data-draw="v" data-fmt="ratio" data-source="kr_format" data-field="a_grade_cut" data-where="format=ScreenX">—</span>
+              <span class="sub">지금 중앙값 <b data-draw="v" data-fmt="ratio" data-source="kr_format" data-field="median_ratio" data-where="format=ScreenX">—</b></span>
             </div>
           </div>
         </div>
@@ -553,9 +560,9 @@ body{background:var(--color-bg);color:var(--color-fg);font-family:var(--font-ant
               <th data-field="open" data-sort="open"><button type="button">개봉</button></th>
               <th data-field="type" data-sort="type"><button type="button">체감 유형</button></th>
               <th data-field="origin" data-sort="origin"><button type="button">국적</button></th>
-              <th class="num" data-field="d4_ratio" data-sort="d4_ratio"><button type="button">4D 배수</button></th>
-              <th class="num" data-field="sx_ratio" data-sort="sx_ratio"><button type="button">ScreenX 배수</button></th>
-              <th class="num" data-field="imax_ratio" data-sort="imax_ratio"><button type="button">IMAX 배수</button></th>
+              <th class="num" data-field="d4_ratio" data-sort="d4_ratio"><button type="button">4D 점유율 배수</button></th>
+              <th class="num" data-field="sx_ratio" data-sort="sx_ratio"><button type="button">ScreenX 점유율 배수</button></th>
+              <th class="num" data-field="imax_ratio" data-sort="imax_ratio"><button type="button">IMAX 점유율 배수</button></th>
               <th class="num" data-field="total_aud" data-sort="total_aud"><button type="button">총관객</button></th>
             </tr></thead>
             <tbody data-draw="films-body"></tbody>
@@ -565,7 +572,7 @@ body{background:var(--color-bg);color:var(--color-fg);font-family:var(--font-ant
           <summary>자세히 보기</summary>
           <div class="more-body">
             <p>분석에 쓴 영화 전체예요. 제목이나 유형으로 찾고, 머리글을 눌러 정렬할 수 있어요.</p>
-            <p>빈칸은 그 포맷을 <span data-draw="k" data-k="min">—</span>회 미만 상영한 경우예요. 색 숫자는 상위 25%(A등급), 흐린 숫자는 일반관보다 낮은 경우예요. 체감 유형은 분석자가 붙인 임시 태그예요.</p>
+            <p>빈칸은 그 포맷을 <span data-draw="k" data-k="min">—</span>회 미만 상영한 경우예요. 점유율 배수 = 특별관 좌석점유율 ÷ 같은 영화 일반관 좌석점유율. 색 숫자는 상위 25%(A등급), 흐린 숫자는 일반관보다 덜 찬 경우예요. 체감 유형은 분석자가 붙인 임시 태그예요.</p>
           </div>
         </details>
       </div>
@@ -584,7 +591,7 @@ body{background:var(--color-bg);color:var(--color-fg);font-family:var(--font-ant
           <div class="stp s3"><span class="n">3</span><b>해외에 대입</b><span>시장별 흥행에서 그 장르의 비중과 변화를 봐요.</span></div>
           <div class="stp s4"><span class="n">4</span><b>전략과 검증</b><span>조합을 고르고 파일럿 목표 배수로 확인해요.</span></div>
         </div>
-        <div class="formula">특별관 회차당 관객 ÷ 같은 영화 일반관 회차당 관객<small>일반관 대비 배수 · 1배보다 크면 특별관 좌석이 더 잘 찬 것</small></div>
+        <div class="formula">특별관 좌석점유율 ÷ 같은 영화 일반관 좌석점유율<small>점유율 배수 · 좌석점유율 = 관객 ÷ 배정 좌석 · 1배보다 크면 특별관이 더 잘 찬 것</small></div>
       </div>
 
       <div class="block acc">
@@ -596,26 +603,26 @@ body{background:var(--color-bg);color:var(--color-fg);font-family:var(--font-ant
               <tbody>
                 <tr><td>한국 상영타입별 성과</td><td>2024.01~2026.09 개봉작 중 ScreenX 또는 4D를 기준 회차 이상 상영한 <b data-draw="v" data-fmt="int" data-source="film_count" data-field="films">—</b>편</td><td>KOBIS 영화관 입장권 통합전산망</td></tr>
                 <tr><td>전 세계 흥행</td><td>2023~2026 연도별 상위 50편</td><td>Box Office Mojo Worldwide</td></tr>
-                <tr><td>해외 시장 흥행</td><td>해외 12개 시장, 2024~2026 연도별 상위 20편</td><td>Box Office Mojo 국가별, 마오옌, TFAI, Ormax, Cinepoint</td></tr>
-                <tr><td>공포 ScreenX 상영 현황</td><td>전 세계 흥행 상위 공포 중 한국 개봉작</td><td>Box Office Mojo, KOBIS</td></tr>
+                <tr><td>해외 시장 흥행</td><td>한국을 뺀 해외 12개 시장(한국 포함 13개 시장 분석), 2024~2026 연도별 상위 20편</td><td>Box Office Mojo 국가별, 마오옌, TFAI, Ormax, Cinepoint</td></tr>
+                <tr><td>상영관 좌석 수</td><td>전국 상설 영화관의 상영관별 좌석 수</td><td>KOBIS 영화상영관 정보</td></tr>
               </tbody>
             </table>
           </div>
         </details>
 
         <details class="acc-d" id="m-metric">
-          <summary>배수를 이렇게 계산한 이유</summary>
+          <summary>점유율을 이렇게 계산했어요</summary>
           <ul class="dots">
             <li><b>같은 영화끼리 비교해요.</b> 작품 자체의 인기 차이가 지워지고, 포맷의 효과만 남아요.</li>
-            <li><b>좌석점유율 대신 회차당 관객을 써요.</b> 포맷별 좌석 수가 공개되지 않기 때문이에요.</li>
+            <li><b>영화 전체 배정 좌석은 KOBIS 일자별 통계에서 가져왔어요.</b> 상영 기간 전체의 좌석 수와 상영 횟수를 모두 더했어요.</li>
+            <li><b>포맷별 좌석은 상영관 좌석 수 평균으로 추정했어요.</b> KOBIS 영화상영관 정보에서 전국 상설 영화관의 상영관별 좌석 수를 모아, 이름에 4D·ScreenX·IMAX가 적힌 상영관의 평균을 썼어요. 특별관 좌석 = 상영 횟수 × 포맷 평균 좌석이고, 일반관 좌석은 영화 전체 좌석에서 특별관 좌석을 뺀 값이에요.</li>
             <li><b>해당 포맷을 <span data-draw="k" data-k="min">—</span>회 이상 상영한 경우만 계산해요.</b> 몇 번 안 튼 상영이 숫자를 흔들지 않게 하려는 거예요.</li>
-            <li><b>일반관은 디지털 2D 계열 상영을 모두 합친 값이에요.</b> IMAX는 경쟁 포맷과 비교하려고 같이 계산했어요.</li>
           </ul>
         </details>
 
         <details class="acc-d" id="m-buckets">
           <summary>장르 묶음 기준</summary>
-          <p class="acc-p">해외 대입에는 한국 특별관 배수가 있어야 해서, 한국 데이터로 근거를 만들 수 있는 여섯 묶음만 썼어요. 글로벌 트렌드는 전 세계 흥행만 보면 되니 장르 10개로 나눴어요.</p>
+          <p class="acc-p">해외 대입에는 한국 특별관 배수가 있어야 해서, 한국 데이터로 근거를 만들 수 있는 여섯 묶음만 썼어요. 글로벌 트렌드는 전 세계 흥행만 보면 되니 장르 10개로 나눴어요. 적합 기준 <span data-draw="k" data-k="fit">—</span>배는 일반관(1배)보다 확실히 높은 선으로 정한 판단 기준이에요.</p>
           <div class="scroll" style="margin:0;padding:0">
             <table class="plain">
               <thead><tr><th>묶음</th><th>한국(KOBIS) 기준</th><th>해외 기준</th></tr></thead>
@@ -623,8 +630,8 @@ body{background:var(--color-bg);color:var(--color-fg);font-family:var(--font-ant
                 <tr><td>일본 애니</td><td>일본 애니메이션</td><td>일본 애니메이션</td></tr>
                 <tr><td>할리우드 공포</td><td>미국 영화 중 KOBIS 대표 장르가 공포</td><td>할리우드 공포</td></tr>
                 <tr><td>할리우드 애니</td><td>미국 애니메이션</td><td>할리우드 애니메이션</td></tr>
-                <tr><td>SF·재난 액션</td><td>미국 영화 중 SF·판타지, 속도·재난·괴수 태그</td><td>할리우드 액션·어드벤처</td></tr>
-                <tr><td>슈퍼히어로</td><td>미국 영화 중 액션·히어로 태그</td><td>슈퍼히어로</td></tr>
+                <tr><td>할리우드 액션</td><td>미국 실사 액션·SF·어드벤처 (슈퍼히어로·공포·애니 제외)</td><td>할리우드 액션·어드벤처</td></tr>
+                <tr><td>슈퍼히어로</td><td>마블·DC 슈퍼히어로 영화</td><td>슈퍼히어로</td></tr>
                 <tr><td>현지 영화</td><td>한국 영화</td><td>그 시장의 자국 영화</td></tr>
               </tbody>
             </table>
@@ -649,7 +656,10 @@ body{background:var(--color-bg);color:var(--color-fg);font-family:var(--font-ant
             <li><b>중국·인도·인도네시아는 추천에서 뺐어요.</b> 현지 영화 비중이 압도적이라 한국 결과를 옮기기 어려워요.</li>
             <li><b>KOBIS의 4D는 4DX와 다른 4D 상영을 합친 값이에요.</b> 4DX만 따로 볼 수 없어요.</li>
             <li><b>체감 유형 태그는 분석자가 붙인 임시 분류예요.</b> TMDB 장르·키워드로 다시 확인할 예정이에요.</li>
-            <li><b>할리우드 공포는 표본이 작아요.</b> 확정 근거가 아니라 파일럿 근거로 봐야 해요.</li>
+            <li><b>장르 묶음별 표본이 작은 곳이 있어요.</b> 할리우드 공포는 4편, 슈퍼히어로는 9편이라 참고 수준이에요.</li>
+            <li><b>포맷별 좌석은 평균으로 추정했어요.</b> 이름에 포맷 표기가 없는 특별관은 평균에서 빠졌고, 영화마다 실제 배정된 상영관 크기는 다를 수 있어요. 시간대, 개봉 주차, 지역 차이도 반영되지 않았어요.</li>
+            <li><b>장르와 성과의 관계는 인과가 아니에요.</b> 팬덤의 초반 집중 관람이나 편성 차이를 분리하지 못했어요.</li>
+            <li><b>공포의 성장은 흥행 상위 50편 안에서의 변화예요.</b> 전체 박스오피스 시장의 성장을 뜻하지는 않아요.</li>
             <li><b>2026년은 연도 중간 집계예요.</b> 연말까지 비중이 바뀔 수 있어요.</li>
           </ul>
         </details>
@@ -723,7 +733,7 @@ body{background:var(--color-bg);color:var(--color-fg);font-family:var(--font-ant
     const r = rows && (el.dataset.where ? rows.find((x) => String(x[col]) === decodeURIComponent(raw || '')) : rows[0]);
     if (!r) { el.textContent = '—'; return; }
     const v = Number(r[el.dataset.field]), f = el.dataset.fmt;
-    el.textContent = f === 'ratio' ? fmtR(v) : f === 'pct' ? pct0(v) : f === 'int' ? d3.format(',')(v) : String(r[el.dataset.field]);
+    el.textContent = f === 'musd' ? `${d3.format(',.1f')(v / 100)}억 달러` : f === 'ratio' ? fmtR(v) : f === 'pct' ? pct0(v) : f === 'int' ? d3.format(',')(v) : String(r[el.dataset.field]);
   });
 
   // 장르별 4D·ScreenX 배수
@@ -735,7 +745,7 @@ body{background:var(--color-bg);color:var(--color-fg);font-family:var(--font-ant
     const data = rows.map((r) => ({b: r.bucket, d4: Number(r.ratio_4d), sx: Number(r.ratio_screenx)}));
     const W = Math.max(300, el.clientWidth), rowH = 50;
     const svg = d3.select(el).append('svg').attr('width', '100%');
-    const lw = measure(svg, data.map((d) => d.b), 13);
+    const lw = measure(svg, data.map((d) => SHORT[d.b] || d.b), 13);
     const m = {t: 22, r: 40, b: 24, l: lw + 12};
     const H = m.t + data.length * rowH + m.b;
     svg.attr('viewBox', `0 0 ${W} ${H}`).attr('height', H);
@@ -747,7 +757,7 @@ body{background:var(--color-bg);color:var(--color-fg);font-family:var(--font-ant
     const ticks = x.ticks(Math.max(2, Math.floor((W - m.l) / 80)));
     svg.append('g').selectAll('line').data(ticks).join('line').attr('x1', x).attr('x2', x).attr('y1', m.t).attr('y2', H - m.b).style('stroke', 'var(--cds-chart-grid)');
     muted(svg.append('g').attr('font-size', 11).selectAll('text').data(ticks).join('text').attr('x', x).attr('y', H - 6).attr('text-anchor', 'middle').text((d) => d3.format('.1f')(d)));
-    txt(svg.append('g').attr('font-size', 13).selectAll('text').data(data).join('text').attr('x', m.l - 10).attr('y', (d) => y(d.b) + y.bandwidth() / 2).attr('dy', '0.35em').attr('text-anchor', 'end').text((d) => d.b));
+    txt(svg.append('g').attr('font-size', 13).selectAll('text').data(data).join('text').attr('x', m.l - 10).attr('y', (d) => y(d.b) + y.bandwidth() / 2).attr('dy', '0.35em').attr('text-anchor', 'end').text((d) => SHORT[d.b] || d.b));
     const t = tipOf(el);
     ['d4', 'sx'].forEach((k) => {
       const g = svg.append('g');
@@ -755,7 +765,7 @@ body{background:var(--color-bg);color:var(--color-fg);font-family:var(--font-ant
         .attr('x', m.l).attr('y', (d) => y(d.b) + sub(k)).attr('height', sub.bandwidth())
         .attr('width', (d) => Math.max(0, x(d[k]) - m.l)).attr('rx', 4).style('fill', c[k])
         .style('opacity', (d) => (d[k] >= FIT ? 1 : 0.3))
-        .on('mousemove', (ev, d) => { const [px, py] = d3.pointer(ev, el); showTip(el, t, d.b, [[c.d4, '4D', fmtR(d.d4)], [c.sx, 'ScreenX', fmtR(d.sx)]], px, py); })
+        .on('mousemove', (ev, d) => { const [px, py] = d3.pointer(ev, el); showTip(el, t, SHORT[d.b] || d.b, [[c.d4, '4D', fmtR(d.d4)], [c.sx, 'ScreenX', fmtR(d.sx)]], px, py); })
         .on('mouseleave', () => { t.hidden = true; });
       g.selectAll('text').data(data).join('text').attr('font-size', 11)
         .attr('x', (d) => x(d[k]) + 5).attr('y', (d) => y(d.b) + sub(k) + sub.bandwidth() / 2).attr('dy', '0.35em')
@@ -817,7 +827,7 @@ body{background:var(--color-bg);color:var(--color-fg);font-family:var(--font-ant
   });
 
   // ---------- 연도 필터 (해외 시장 비중) ----------
-  const SHORT = {'액션·어드벤처(SF·재난)': 'SF·재난 액션', '슈퍼히어로·액션': '슈퍼히어로', '현지(로컬) 영화': '현지 영화', '할리우드 공포': '할리우드 공포', '일본 애니': '일본 애니', '할리우드 애니': '할리우드 애니'};
+  const SHORT = {'액션·어드벤처(SF·재난)': '할리우드 액션', '슈퍼히어로·액션': '슈퍼히어로', '현지(로컬) 영화': '현지 영화', '할리우드 공포': '할리우드 공포', '일본 애니': '일본 애니', '할리우드 애니': '할리우드 애니'};
   const YR = () => String(dash.params().year ?? '2026');
   document.querySelectorAll('.ts .yr button').forEach((b) => b.addEventListener('click', () => dash.setParams({year: b.dataset.year})));
   dash.onData(() => {
@@ -840,15 +850,15 @@ body{background:var(--color-bg);color:var(--color-fg);font-family:var(--font-ant
   dash.calc('recs', {
     inputs: ['mf', 'kr_buckets'],
     title: '연도별 추천 조합',
-    description: '한국 배수 1.2배 이상인 장르 중, 그 해 그 시장 Top20 매출 비중이 10% 이상인 시장·장르 조합. 할리우드 공포만 새 기회, 나머지는 이미 하고 있는 유지·강화',
+    description: '한국 점유율 배수 1.2배 이상인 장르 중, 그 해 그 시장 Top20 매출 비중이 10% 이상인 시장·장르 조합(기준이 다른 인도·인도네시아 제외). 일본 애니는 개봉일부터 특별관, 나머지는 유지·강화',
     fn: (mf, kr_buckets) => {
       const fit = {};
       kr_buckets.forEach((b) => { const d4 = Number(b.ratio_4d), sx = Number(b.ratio_screenx); if (Math.max(d4, sx) >= 1.2) fit[b.bucket] = d4 >= sx ? '4D' : 'ScreenX'; });
       const order = [...new Set(mf.map((r) => r.market))];
       return mf
-        .filter((r) => fit[r.bucket] && r.share >= 0.10)
+        .filter((r) => fit[r.bucket] && r.share >= 0.10 && r.market !== '인도' && r.market !== '인도네시아')
         .map((r) => ({year: r.year, market: r.market, format: fit[r.bucket], bucket: r.bucket,
-          kind: r.bucket === '할리우드 공포' ? '새 기회' : '유지·강화', share: r.share, prev: r.prev}))
+          kind: r.bucket === '일본 애니' ? '개봉일부터 특별관' : '유지·강화', share: r.share, prev: r.prev}))
         .sort((a, b) => order.indexOf(a.market) - order.indexOf(b.market) || b.share - a.share);
     },
   });
@@ -918,16 +928,16 @@ body{background:var(--color-bg);color:var(--color-fg);font-family:var(--font-ant
     });
     return out;
   };
-  const joinMk = (items) => items.map((r) => r.market).join('·');
+  const joinMk = (items, cap) => { const s = [...items].sort((a, b) => b.share - a.share); const head = s.slice(0, cap || s.length).map((r) => r.market).join('·'); return cap && s.length > cap ? `${head} 외 ${s.length - cap}곳` : head; };
 
   dash.draw('hero-chips', (el) => {
     el.replaceChildren();
     const recs = rowsOf('recs'); if (!recs) { el.textContent = '—'; return; }
     const c = C();
-    combos(recs.filter((r) => r.year === YR() && r.bucket !== '액션·어드벤처(SF·재난)')).forEach((g) => {
+    combos(recs.filter((r) => r.year === YR())).sort((p, q) => (q.bucket === '일본 애니') - (p.bucket === '일본 애니')).forEach((g) => {
       const s = document.createElement('span'); s.className = 'chip';
       const i = document.createElement('i'); i.style.background = g.format === '4D' ? c.d4 : c.sx;
-      const mk = joinMk(g.items);
+      const mk = joinMk(g.items, 3);
       const tx = document.createElement('span'); tx.textContent = `${mk}${josa(mk, '은', '는')} ${g.format} × ${SHORT[g.bucket] || g.bucket}`;
       const k = document.createElement('small'); k.className = 'chip-kind'; k.textContent = g.kind;
       s.append(i, tx, k); el.appendChild(s);
@@ -938,16 +948,17 @@ body{background:var(--color-bg);color:var(--color-fg);font-family:var(--font-ant
     box.replaceChildren();
     const recs = rowsOf('recs'); if (!recs) { box.textContent = '—'; return; }
     const c = C();
-    const gs = combos(recs.filter((r) => r.year === YR() && r.kind === '새 기회'));
+    const gs = combos(recs.filter((r) => r.year === YR()));
     if (!gs.length) {
-      const p = document.createElement('p'); p.className = 'empty-note'; p.textContent = '이 해에는 기준을 넘는 새 조합이 없어요. 다른 연도를 골라 보세요.'; box.appendChild(p); return;
+      const p = document.createElement('p'); p.className = 'empty-note'; p.textContent = '이 해에는 기준을 넘는 조합이 없어요. 다른 연도를 골라 보세요.'; box.appendChild(p); return;
     }
     gs.forEach((g) => {
       const card = document.createElement('div'); card.className = 'cc';
       const head = document.createElement('div'); head.className = 'cc-head';
       const p = document.createElement('span'); p.className = 'pill'; p.style.background = g.format === '4D' ? c.d4 : c.sx; p.textContent = g.format;
       const b = document.createElement('span'); b.className = 'cc-title'; b.textContent = `× ${SHORT[g.bucket] || g.bucket}`;
-      head.append(p, b); card.appendChild(head);
+      const kd = document.createElement('small'); kd.className = 'chip-kind'; kd.textContent = g.kind;
+      head.append(p, b, kd); card.appendChild(head);
       const list = document.createElement('div'); list.className = 'cc-list';
       g.items.forEach((r) => {
         const row = document.createElement('div'); row.className = 'cc-row';
@@ -962,55 +973,40 @@ body{background:var(--color-bg);color:var(--color-fg);font-family:var(--font-ant
     });
   });
 
-  dash.draw('rec-keep', (ul) => {
-    ul.replaceChildren();
-    const recs = rowsOf('recs'); if (!recs) return;
-    combos(recs.filter((r) => r.year === YR() && r.kind === '유지·강화')).forEach((g) => {
-      const li = document.createElement('li');
-      li.textContent = `${g.format} × ${SHORT[g.bucket] || g.bucket} · ${g.items.map((r) => `${r.market} ${pct0(r.share)}`).join(', ')}`;
-      ul.appendChild(li);
-    });
-  });
-
-  // 한국 개봉 흥행 공포: 국내 관객 순 막대, ScreenX 상영 여부로 색 (KOBIS)
-  dash.draw('horror-bars', (el) => {
+  // ScreenX 점유율 배수 상위 작품
+  dash.draw('sx-top', (el) => {
     el.replaceChildren();
-    const rows = rowsOf('horror_kr'); if (!rows) { el.textContent = '—'; return; }
+    const rows = rowsOf('kr_films'); if (!rows) { el.textContent = '—'; return; }
     const c = C();
-    const data = rows.map((r) => ({t: r.title, a: Number(r.kr_aud), sx: Number(r.sx_shows), d4: Number(r.d4_shows)})).sort((p, q) => q.a - p.a);
-    const onMed = d3.median(data.filter((d) => d.sx > 0), (d) => d.a);
-    const W = Math.max(300, el.clientWidth), rowH = 26;
+    const data = rows.filter((r) => r.sx_ratio !== '' && r.sx_ratio != null).map((r) => ({t: r.title, ty: r.type, v: Number(r.sx_ratio)}))
+      .sort((p, q) => q.v - p.v).slice(0, 10);
+    const W = Math.max(300, el.clientWidth), rowH = 32;
     const svg = d3.select(el).append('svg').attr('width', '100%');
-    const lw = Math.min(W * 0.42, measure(svg, data.map((d) => d.t), 13, 600));
-    const m = {t: 4, r: 70, b: 4, l: lw + 12};
+    const short = (s) => (s.length > 16 ? s.slice(0, 15) + '…' : s);
+    const lw = Math.min(W * 0.45, measure(svg, data.map((d) => short(d.t)), 13, 600));
+    const m = {t: 4, r: 48, b: 22, l: lw + 12};
     const H = m.t + data.length * rowH + m.b;
     svg.attr('viewBox', `0 0 ${W} ${H}`).attr('height', H);
     el.style.minHeight = H + 'px';
-    const x = d3.scaleLinear([0, d3.max(data, (d) => d.a)], [m.l, W - m.r]);
-    const y = d3.scaleBand(data.map((d) => d.t), [m.t, H - m.b]).padding(0.25);
-    const man = (n) => (n >= 10000 ? `${d3.format(',.1f')(n / 10000)}만` : `${d3.format(',')(n)}`);
+    const x = d3.scaleLinear([0, Math.max(2, d3.max(data, (d) => d.v) * 1.05)], [m.l, W - m.r]);
+    const y = d3.scaleBand(data.map((d) => d.t), [m.t, H - m.b]).padding(0.28);
     const t = tipOf(el);
     data.forEach((d) => {
-      const miss = d.sx === 0 && d.a > onMed;
       const g = svg.append('g');
-      const lab = g.append('text').attr('x', m.l - 10).attr('y', y(d.t) + y.bandwidth() / 2).attr('dy', '0.35em').attr('text-anchor', 'end').attr('font-size', 13)
-        .style('font-weight', miss ? 700 : 500).text(d.t);
-      (miss || d.sx > 0 ? txt : muted)(lab);
-      g.append('rect').attr('x', m.l).attr('y', y(d.t)).attr('height', y.bandwidth()).attr('width', Math.max(1, x(d.a) - m.l)).attr('rx', 4)
-        .style('fill', d.sx > 0 ? c.sx : c.m).style('opacity', d.sx > 0 || miss ? 1 : 0.55);
-      if (miss) g.append('rect').attr('x', m.l + 0.75).attr('y', y(d.t) + 0.75).attr('height', y.bandwidth() - 1.5).attr('width', Math.max(1, x(d.a) - m.l - 1.5)).attr('rx', 4)
-        .style('fill', 'none').style('stroke', 'var(--color-fg)').style('stroke-width', 1.5);
-      (miss ? txt : muted)(g.append('text').attr('x', x(d.a) + 6).attr('y', y(d.t) + y.bandwidth() / 2).attr('dy', '0.35em').attr('font-size', 12).style('font-weight', miss ? 700 : 400).text(man(d.a)));
+      txt(g.append('text').attr('x', m.l - 10).attr('y', y(d.t) + y.bandwidth() / 2).attr('dy', '0.35em').attr('text-anchor', 'end').attr('font-size', 13).style('font-weight', 600).text(short(d.t)));
+      g.append('rect').attr('x', m.l).attr('y', y(d.t)).attr('height', y.bandwidth()).attr('width', Math.max(1, x(d.v) - m.l)).attr('rx', 4).style('fill', d.v >= 1 ? c.sx : c.m);
+      muted(g.append('text').attr('x', x(d.v) + 6).attr('y', y(d.t) + y.bandwidth() / 2).attr('dy', '0.35em').attr('font-size', 12).text(d3.format('.2f')(d.v)));
       g.append('rect').attr('x', 0).attr('y', y(d.t)).attr('width', W).attr('height', y.bandwidth()).style('fill', 'transparent')
-        .on('mousemove', (ev) => {
-          const [px, py] = d3.pointer(ev, el);
-          showTip(el, t, d.t, [[null, '국내 관객', `${d3.format(',')(d.a)}명`], [null, 'ScreenX', d.sx > 0 ? `${d3.format(',')(d.sx)}회` : '상영 없음'], [null, '4D', d.d4 > 0 ? `${d3.format(',')(d.d4)}회` : '상영 없음']], px, py);
-        })
+        .on('mousemove', (ev) => { const [px, py] = d3.pointer(ev, el); showTip(el, t, d.t, [[null, '유형', d.ty], [c.sx, 'ScreenX 점유율 배수', fmtR(d.v)]], px, py); })
         .on('mouseleave', () => { t.hidden = true; });
     });
-    if (onMed) {
-      svg.append('line').attr('x1', x(onMed)).attr('x2', x(onMed)).attr('y1', m.t).attr('y2', H - m.b).style('stroke', 'var(--cds-chart-reference)').attr('stroke-dasharray', '4 3');
-    }
+    svg.append('line').attr('x1', x(1)).attr('x2', x(1)).attr('y1', m.t).attr('y2', H - m.b).style('stroke', 'var(--cds-chart-reference)').attr('stroke-dasharray', '4 3');
+    muted(svg.append('text').attr('x', x(1)).attr('y', H - 6).attr('text-anchor', 'middle').attr('font-size', 11).text('일반관과 같음'));
+  });
+
+  dash.calc('horror_gross', {
+    inputs: ['global_share'], title: 'Top50 안 공포 매출과 Top50 전체 매출', description: '전 세계 흥행 상위 50편 중 공포 영화 매출 합계와 상위 50편 전체 매출(백만 달러)',
+    fn: (global_share) => global_share.filter((r) => r.category === '공포').map((r) => ({year: String(r.year), gross_musd: Number(r.gross_musd), top50_total_musd: Number(r.top50_total_musd)})),
   });
 
   // ---------- 페이지 이동 (사이드바) ----------

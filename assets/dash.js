@@ -10,7 +10,6 @@
     market_year: 'data/market_year.csv',
     kr_films: 'data/kr_films.csv',
     kr_tests: 'data/kr_tests.csv',
-    horror_kr: 'data/horror_kr.csv',
   };
   const DEFAULT_PARAMS = {market: '북미', year: '2026'};
 
